@@ -1,0 +1,33 @@
+{
+  "manifest_version": 2,
+  "name": "Edition Mode",
+  "description": "Enable an edition mode to modify any text in the webpage.",
+  "short_name": "MonkeyInvasion",
+  "version": "1.0.0.0",
+
+  "icons": {
+    "16": "extension_icons/ttvhidefollowedchannel-16.png",
+    "32": "extension_icons/ttvhidefollowedchannel-32.png",
+    "48": "extension_icons/ttvhidefollowedchannel-48.png",
+    "128": "extension_icons/ttvhidefollowedchannel-128.png"
+  },
+
+  "background": {
+      "scripts": [
+        "background_scripts/hide_context_menu.js"
+      ],
+      "persistent": false
+  },
+
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "jquery/jquery-3.4.1.min.js",
+        "content_scripts/hide_channel.js"
+      ]
+    }
+  ]
+}
