@@ -39,8 +39,6 @@
   ],
   
   "web_accessible_resources": [
-	"scripts/hello.js",
-	"scripts/hello_jquery.js",
-	"scripts/bye.js"
+	"scripts/*"
 	]
 }

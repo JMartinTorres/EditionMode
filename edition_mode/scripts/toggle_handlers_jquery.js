@@ -1,33 +1,40 @@
 
-function disableAllClickHandlers() {
-	
-	debugger;
+function disableClickHandlers() {
 
-		$("a").each(function () {
-			if ($(this).attr("href")) {
-				debugger;
-				let href = $(this).attr("href");
-				href = "javascript:void(0);" + href;
-				$(this).attr("href", href);
-			}
-		});
-		
-		$("body").find("*").not("script,style").each(function () {
-			makeEditable(this);
-		});
+	debugger;
 	
+	$("body").find("*").not("script,style").each(function () {
+		$(this).addClass("edition-mode-click-handlers-off");
+
+		if (!this.isContentEditable) {
+			$(this).addClass("edition-mode-activated-lets-go");
+			$(this).attr('contenteditable', 'true');
+		}
+
+		preventOnClick(this);
+	});
+
+	$("a").each(function () {
+		if ($(this).attr("href")) {
+			debugger;
+			let href = $(this).attr("href");
+			href = "javascript:void(0);" + href;
+			$(this).attr("href", href);
+		}
+	});
 
 }
 
-function enableAllClickHandlers() {
+function enableClickHandlers() {
 
-		$(".edition-mode-activated-lets-go").each(function () {
-			$(this).attr('contenteditable', 'false');
-			$(this).removeClass("edition-mode-activated-lets-go");
+		$(".edition-mode-click-handlers-off").each(function () {
+			$(this).removeClass("edition-mode-click-handlers-off");
+			$(this).removeStop();
 		});
-
-		$("body").find("*").not("script,style").each(function () {
-			revertEditable(this);
+		
+		$(".edition-mode-activated-lets-go").each(function () {
+			$(this).removeClass("edition-mode-activated-lets-go");
+			$(this).attr('contenteditable', 'false');
 		});
 
 		$("a").each(function () {
@@ -38,27 +45,7 @@ function enableAllClickHandlers() {
 				$(this).attr("href", href);
 			}
 		});
-
 	
-}
-
-
-function makeEditable(elem) {
-	// Prevent all elements from executing their on click actions 😈
-	$(elem).addClass("edition-mode-click-handlers-off");
-	preventOnClick(elem);
-
-	// Make all non-editable texts editable and mark them with a class
-	if (!elem.isContentEditable) {
-		// if ($(elem).text().match(letters)) {
-		$(elem).addClass("edition-mode-activated-lets-go");
-		$(elem).attr('contenteditable', 'true');
-		// }
-	}
-}
-
-function revertEditable(e) {
-	$(e).removeStop();
 }
 
 function preventOnClick(e) {
@@ -69,7 +56,6 @@ function preventOnClick(e) {
 		$(e).prop('onclick', null);
 		$(e).bindFirstClick(onclick_function);
 	}
-
 
 	$(e).prop('onclick', null);
 	$(e).bindFirstClick(stop);
