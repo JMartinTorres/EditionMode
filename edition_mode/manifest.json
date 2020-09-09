@@ -36,9 +36,5 @@
         "styles/edition_mode.css"
       ]
     }
-  ],
-  
-  "web_accessible_resources": [
-	"scripts/*"
-	]
+  ]
 }
