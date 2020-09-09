@@ -23,6 +23,15 @@
       "persistent": true
   },
 
+  "commands": {
+    "_execute_browser_action": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+E"
+      },
+      "description": "Enable/disable Edition Mode"
+    }
+  },
+
   "content_scripts": [
     {
       "matches": [
