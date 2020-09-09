@@ -18,7 +18,7 @@
 
   "background": {
       "scripts": [
-        "background_scripts/edition_mode.js"
+        "background_scripts/switch_extension_icon.js"
       ],
       "persistent": true
   },
